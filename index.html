@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cineflow | Production Manager</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+    <div class="app-shell">
+        <aside class="sidebar">
+            <div class="sidebar__top">
+                <a class="brand-unit" href="#">
+                    <span class="brand-unit__icon">CF</span>
+                    <span>
+                        <strong>Cineflow</strong>
+                        <small>Production Suite</small>
+                    </span>
+                </a>
+                <nav class="nav">
+                    <a class="nav__item nav__item--active" href="#" data-page="dashboard">Dashboard</a>
+                    <a class="nav__item" href="#" data-page="projects">Projects</a>
+                    <a class="nav__item" href="#" data-page="archive">Archives</a>
+                </nav>
+            </div>
+            <div class="sidebar__bottom">
+                <button class="cta cta--sidebar" type="button" id="open-add-modal">+ Add New Item</button>
+                <p class="sidebar__note">Tip: Use "Dashboard" for inspiration and "Projects" for active shoots.</p>
+            </div>
+        </aside>
+
+        <main class="stage">
+            <header class="topbar">
+                <div class="topbar__left">
+                    <p class="kicker">Visual Reference Manager</p>
+                    <h1 class="page-title" id="current-page-title">Dashboard</h1>
+                </div>
+                <div class="topbar__right">
+                    <div class="search-container">
+                        <input type="text" id="global-search" placeholder="Search projects or boards..." />
+                        <span class="search-icon">🔍</span>
+                    </div>
+                </div>
+            </header>
+
+            <section id="page-dashboard" class="page-content">
+                <section class="hero-panel">
+                    <div class="hero-panel__copy">
+                        <h2>Production Overview</h2>
+                        <p>Manage your visual assets and shot lists in one place.</p>
+                    </div>
+                    <div class="hero-panel__stats">
+                        <div class="stat-card">
+                            <span>Boards</span>
+                            <strong id="stat-boards">0</strong>
+                        </div>
+                        <div class="stat-card">
+                            <span>Active Projects</span>
+                            <strong id="stat-projects">0</strong>
+                        </div>
+                    </div>
+                </section>
+                <section class="dashboard-grid" id="dashboard-grid"></section>
+            </section>
+
+            <section id="page-projects" class="page-content" hidden>
+                <section class="dashboard-grid" id="projects-grid"></section>
+            </section>
+
+            <section id="page-archive" class="page-content" hidden>
+                <section class="dashboard-grid" id="archive-grid"></section>
+            </section>
+        </main>
+    </div>
+
+    <div class="app-modal" id="app-modal" hidden>
+        <button class="app-modal__backdrop" type="button" id="close-modal-bg"></button>
+        <div class="app-modal__dialog">
+            <h2 id="modal-title">Add to Dashboard</h2>
+            <form id="app-modal-form" class="form-grid" data-mode="add">
+                <div class="form-field form-field--full">
+                    <label>Item Name</label>
+                    <input name="title" id="form-title" type="text" placeholder="e.g. Neon Interior" required />
+                </div>
+                <div class="form-field">
+                    <label>Type / Category</label>
+                    <select name="category" id="form-category">
+                        <option value="boards">Dashboard (Inspiration)</option>
+                        <option value="projects">Active Project</option>
+                        <option value="archives">Archive Entry</option>
+                    </select>
+                </div>
+                <div class="form-field">
+                    <label>Mood / Vibe</label>
+                    <input name="mood" id="form-mood" type="text" placeholder="e.g. Dark Blue" required />
+                </div>
+                <div class="form-field form-field--full">
+                    <label>Image URL</label>
+                    <input name="imageURL" id="form-imageURL" type="url" placeholder="https://..." />
+                </div>
+                <div class="form-field form-field--full">
+                    <label>Or Upload Image</label>
+                    <input type="file" id="imageFile" accept="image/*" />
+                </div>
+                <div class="form-field form-field--full">
+                    <label>Production Notes</label>
+                    <textarea name="note" id="form-note"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button class="button-secondary" type="button" id="close-modal-btn">Cancel</button>
+                    <button class="cta" type="submit" id="form-submit-btn">Save Item</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+</html>
